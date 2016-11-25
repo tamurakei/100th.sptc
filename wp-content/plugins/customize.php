@@ -35,7 +35,13 @@ add_filter('manage_data_columns', 'add_custom_column');
 
 function add_custom_column_id($column_name, $id) {
 	if( $column_name == 'player' ) {
-		echo get_the_term_list($id, 'player', '', ', ');
+		$terms = $terms = get_the_terms( $id, 'player' );
+		$cnt = 0;
+		foreach($terms as $var) {
+			echo $cnt != 0 ? ", " : "";
+			echo "<a href=\"" . get_admin_url() . "edit.php?player=" . $var->slug . "&post_type=data" . "\">" . $var->name . "</a>";
+		++$cnt;
+		}
 	}
 }
-add_action('manage_data_custom_column', 'add_custom_column_id', 10, 2);
+add_action('manage_data_posts_custom_column', 'add_custom_column_id', 10, 2);
