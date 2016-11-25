@@ -1,0 +1,22 @@
+{{#count}}
+<li class="term-item {{#is-selected}}current-term{{/is-selected}}">
+	{{#is-selected}}
+		<a class="remove-term" href="{{url}}" title="{{title}}">{{term-name}} ({{count}}) (解除)</a>
+	{{/is-selected}}
+
+	{{#count}}
+	{{^is-selected}}
+		<a class="add-term" href="{{url}}" title="{{title}}">{{term-name}} ({{count}})</a>
+	{{/is-selected}}
+	{{/count}}
+	{{#count}}
+	{{#children}}
+	{{#count}}
+		<ul>
+			{{{child-list}}}
+		</ul>
+	{{/count}}
+	{{/children}}
+	{{/count}}
+</li>
+{{/count}}
